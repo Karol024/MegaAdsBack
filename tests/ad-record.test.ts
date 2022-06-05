@@ -7,7 +7,7 @@ const defaultObj = {
     price:0,
     lat: 9,
     lon: 9,
-}
+};
 
 test('Can build AddRecord', ()=> {
    const ad = new AddRecord(defaultObj);
