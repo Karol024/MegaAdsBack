@@ -1,4 +1,4 @@
-import {AdEntity, NewAdEntity} from "../types";
+import {AdEntity, NewAdEntity, SimpleAdEntity} from "../types";
 import { ValidationError } from "../utils/errors";
 import { pool } from "../utils/db";
 import { FieldPacket} from "mysql2";
@@ -6,6 +6,7 @@ import { FieldPacket} from "mysql2";
 type AddRecordResults = [AdEntity[],FieldPacket[]];
 
 export class AddRecord implements  AdEntity {
+
 
    public description: string;
    public id: string;
@@ -45,10 +46,26 @@ export class AddRecord implements  AdEntity {
       this.lon = obj.lon;
    }
    static async getOne(id: string): Promise<AddRecord | null>{
-     const [results] = await pool.execute("SELECT * FROM `ads` WHERE id = :id", {
+     const [results] = await pool.execute("SELECT * FROM `ads` WHERE `id` = :id", {
          id,
       }) as AddRecordResults;
 
      return results.length === 0 ? null :  new AddRecord(results[0]);
+   }
+
+   static async findAll(name: string): Promise<SimpleAdEntity[]> {
+      const [results] = await pool.execute("SELECT * FROM `ads` WHERE `name` LIKE :search", {
+         search: `%${name}%`,
+      }) as AddRecordResults;
+
+      return results.map(result => {
+         const {
+            id,lat,lon
+         } = result;
+
+         return {
+            id,lat,lon
+         }
+      });
    }
 }
