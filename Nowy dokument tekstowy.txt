@@ -4,3 +4,5 @@ npm i -D typescript ts-node ts-node-dev @types/express @types/node @types/uuid
 npm i cors
 npm i -D @types/cors
 npm i -D ts-jest @types/jest
+npm i -D jest
+npm i express-rate-limit
