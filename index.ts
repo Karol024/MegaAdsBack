@@ -4,7 +4,8 @@ import 'express-async-errors';
 import {handleError} from "./utils/errors";
 import rateLimit from "express-rate-limit";
 import {adRouter,} from "./routers/ad.router";
-import {config} from "./config/config";
+import {config} from "./config/config.";
+
 
 
 const app = express();

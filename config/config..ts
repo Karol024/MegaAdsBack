@@ -1,4 +1,4 @@
-/**
+
 export const config = {
   dbHost: 'localhost',
   dbUser: 'user',
@@ -6,4 +6,3 @@ export const config = {
   dbDatabase: 'database',
   corsOrigin: 'http://localhost:3000',
 };
- */
